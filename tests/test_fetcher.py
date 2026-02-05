@@ -25,20 +25,23 @@ from nc_business_doc_fetcher import (
 class TestBusinessRecord(unittest.TestCase):
     """Tests for BusinessRecord dataclass."""
     
+    # Sample test data - static values for test consistency
+    SAMPLE_DATE = "2020-06-15"
+    
     def test_creation_with_required_fields(self):
         """Verify BusinessRecord can be created with required fields."""
         record = BusinessRecord(
             entity_name="Test Company LLC",
             sos_identifier="12345678",
             status_text="Active",
-            date_registered="2024-01-15",
+            date_registered=self.SAMPLE_DATE,
             detail_link="https://example.com/detail"
         )
         
         self.assertEqual(record.entity_name, "Test Company LLC")
         self.assertEqual(record.sos_identifier, "12345678")
         self.assertEqual(record.status_text, "Active")
-        self.assertEqual(record.date_registered, "2024-01-15")
+        self.assertEqual(record.date_registered, self.SAMPLE_DATE)
         self.assertEqual(record.pdf_documents, [])
 
 

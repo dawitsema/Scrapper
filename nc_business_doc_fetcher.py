@@ -32,6 +32,9 @@ logging.basicConfig(
 )
 module_logger = logging.getLogger(__name__)
 
+# Constants for filename generation
+FILENAME_MAX_LENGTH = 50
+
 
 @dataclass
 class BusinessRecord:
@@ -231,7 +234,7 @@ class NCBusinessDocumentFetcher:
             response = self._perform_request(pdf_url)
             
             # Generate safe filename
-            safe_name = re.sub(r'[^\w\s-]', '', business_name)[:50]
+            safe_name = re.sub(r'[^\w\s-]', '', business_name)[:FILENAME_MAX_LENGTH]
             url_hash = hashlib.md5(pdf_url.encode()).hexdigest()[:8]
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             
